@@ -19,8 +19,11 @@ class _AppMainScreenState extends State<AppMainScreen> {
   @override
   void initState() {
     page= [
-      MyAppHomeScreen(),
-      
+     const MyAppHomeScreen(),
+     navBarPage(Iconsax.heart5),
+     navBarPage(Iconsax.calendar5),
+     navBarPage(Iconsax.setting_21),
+
 
     ]
     super.initState();
@@ -76,6 +79,7 @@ class _AppMainScreenState extends State<AppMainScreen> {
           ),
         ],
       ),
+      body: page[selectedIndex],
     );
   }
 
