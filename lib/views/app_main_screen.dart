@@ -10,6 +10,8 @@ class AppMainScreen extends StatefulWidget {
 }
 
 class _AppMainScreenState extends State<AppMainScreen> {
+  int selectedIndex =0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,24 +20,43 @@ class _AppMainScreenState extends State<AppMainScreen> {
         backgroundColor: Colors.white,
         elevation: 0,
         iconSize: 28,
+        currentIndex: selectedIndex,
         selectedItemColor: kPrimarycolor,
         unselectedItemColor: Colors.grey,
         type: BottomNavigationBarType.fixed,
+        selectedLabelStyle: const TextStyle(
+          color: kPrimarycolor,
+          fontWeight: FontWeight.w600,
+        ),
+
+        unselectedLabelStyle:const TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+        ) ,
+        onTap:(value) {
+          selectedIndex = value;
+        },
+
         items: [
-          BottomNavigationBarItem(
-            icon: Icon(Iconsax.home5),
+           BottomNavigationBarItem(
+            icon: Icon(
+              selectedIndex == 0 ? Iconsax.home5 : Iconsax.home5
+              ),
             label: "Home",
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Iconsax.heart),
+
+           BottomNavigationBarItem(
+            icon: Icon(
+               selectedIndex == 1 ? Iconsax.heart5 : Iconsax.heart),
             label: "Favourite",
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Iconsax.calendar_1),
+           BottomNavigationBarItem(
+            icon: Icon(  selectedIndex == 2 ?  Iconsax.calendar5 : Iconsax.calendar),
             label: "Meal plan",
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Iconsax.setting),
+
+           BottomNavigationBarItem(
+            icon: Icon(selectedIndex == 3 ?  Iconsax.setting5 : Iconsax.setting_2),
             label: "Setting",
           ),
         ],
