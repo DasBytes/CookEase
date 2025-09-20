@@ -1,4 +1,4 @@
-import 'package:cook_ease/constants.dart';
+import 'package:cook_ease/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
