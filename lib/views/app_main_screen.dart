@@ -1,6 +1,6 @@
 import 'package:cook_ease/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:iconsax/iconsax.dart';
 
 class AppMainScreen extends StatefulWidget {
   const AppMainScreen({super.key});
@@ -23,7 +23,7 @@ class _AppMainScreenState extends State<AppMainScreen> {
         type: BottomNavigationBarType.fixed,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Iconsax.home),
+            icon: Icon(Iconsax.home5),
             label: "Home",
           ),
           BottomNavigationBarItem(
