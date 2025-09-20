@@ -43,6 +43,6 @@ class _MyAppHomeScreenState extends State<MyAppHomeScreen> {
           ),
         ),
       ),
-    )
+    );
   }
 }

@@ -25,7 +25,7 @@ class _AppMainScreenState extends State<AppMainScreen> {
      navBarPage(Iconsax.setting_21),
 
 
-    ]
+    ];
     super.initState();
 
   }
