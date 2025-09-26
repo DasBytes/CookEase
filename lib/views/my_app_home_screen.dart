@@ -52,7 +52,14 @@ class _MyAppHomeScreenState extends State<MyAppHomeScreen> {
                           AsyncSnapshot<QueryDocumentSnapshot> streamsnapshot)
                          {
                           if(streamsnapshot.hasData){
-                            return SingleChildScrollView();
+                            return SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: List.generate(
+                                streamsnapshot.data!.docs.length,,
+                                 generator),
+                              
+                            );
                           }
                           return Center(
                             child: Column(
