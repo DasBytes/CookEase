@@ -13,8 +13,9 @@ class MyAppHomeScreen extends StatefulWidget {
 }
 
 class _MyAppHomeScreenState extends State<MyAppHomeScreen> {
-    final CollectionReference  categoriesItems = FirebaseFirestore.instance.collection("App-Category");
-    String category = "All";
+  final CollectionReference categoriesItems =
+      FirebaseFirestore.instance.collection("App-Category");
+  String category = "All";
 
   @override
   Widget build(BuildContext context) {
@@ -32,49 +33,56 @@ class _MyAppHomeScreenState extends State<MyAppHomeScreen> {
                   children: [
                     headerParts(),
                     mySearchBar(),
-                    // fot the banner
+                    // for the banner
                     const BannerToExplore(),
                     const Padding(
-                      padding: EdgeInsets.symmetric(
-                        vertical: 20,),
-                        child: Text(
-                          "categories",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                        ) ,
+                      padding: EdgeInsets.symmetric(vertical: 20),
+                      child: Text(
+                        "categories",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
                         ),
-                        ),
-                        // for the categories
-                        StreamBuilder(
-                          stream: categoriesItems.snapshots(),
-                         builder: (context,
-                          AsyncSnapshot<QueryDocumentSnapshot> streamsnapshot)
-                         {
-                          if(streamsnapshot.hasData){
-                            return SingleChildScrollView(
+                      ),
+                    ),
+                    // for the categories
+                    StreamBuilder<QuerySnapshot>(
+                      stream: categoriesItems.snapshots(),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          final docs = snapshot.data!.docs;
+                          return SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: Row(
                               children: List.generate(
-                                streamsnapshot.data!.docs.length,,
-                                 generator),
-                              
-                            );
-                          }
-                          return Center(
-                            child: Column(
-                              children:  [
-                                CircularProgressIndicator(),
-                             
-                              ],
+                                docs.length,
+                                (index) {
+                                  final data =
+                                      docs[index].data() as Map<String, dynamic>;
+                                  return Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 8.0),
+                                    child: Chip(
+                                      label: Text(data['name'] ?? 'Category'),
+                                    ),
+                                  );
+                                },
+                              ),
                             ),
-                          )
-                         }
-                         )
-                        
+                          );
+                        }
+                        if (snapshot.hasError) {
+                          return const Center(
+                            child: Text("Error loading categories"),
+                          );
+                        }
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      },
+                    ),
                   ],
-                
-                )
+                ),
               ),
             ],
           ),
@@ -85,47 +93,47 @@ class _MyAppHomeScreenState extends State<MyAppHomeScreen> {
 
   Padding mySearchBar() {
     return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 22),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        filled: true,
-                        prefixIcon: const Icon(Iconsax.search_normal),
-                        fillColor: Colors.white,
-                        border: InputBorder.none,
-                        hintText: "Search for recipes",
-                        hintStyle: const TextStyle(
-                          color: Colors.grey,
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide.none,
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide.none,
-                        ),
-                      ),
-                    )
-                  );
+      padding: const EdgeInsets.symmetric(vertical: 22),
+      child: TextField(
+        decoration: InputDecoration(
+          filled: true,
+          prefixIcon: const Icon(Iconsax.search_normal),
+          fillColor: Colors.white,
+          border: InputBorder.none,
+          hintText: "Search for recipes",
+          hintStyle: const TextStyle(
+            color: Colors.grey,
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide.none,
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide.none,
+          ),
+        ),
+      ),
+    );
   }
 
   Row headerParts() {
     return Row(
-                    children: [
-                      const Text("What are\nyou cooking today?",
-                      style: TextStyle(
-                        fontSize: 32,
-                        fontWeight: FontWeight.bold,
-                        height: 1,
-                      ),
-                      
-                      ),
-                      const Spacer(),
-                      MyIconButton(icon: Iconsax.notification, 
-                      pressed: (){},
-                      ),
-                      
-                    ],
-                  );
+      children: [
+        const Text(
+          "What are\nyou cooking today?",
+          style: TextStyle(
+            fontSize: 32,
+            fontWeight: FontWeight.bold,
+            height: 1,
+          ),
+        ),
+        const Spacer(),
+        MyIconButton(
+          icon: Iconsax.notification,
+          pressed: () {},
+        ),
+      ],
+    );
   }
 }
