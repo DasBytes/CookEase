@@ -14,14 +14,17 @@ class BannerToExplore extends StatelessWidget {
         color: Kbannercolor
       ),
       child: Stack(children: [
-        Positioned(child: Column(
+        Positioned(
+          top: 30,
+          left: 15,
+          child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text("Cook the best\nrecipe at home", style: TextStyle(
               fontSize: 22,
               height: 1.1,
               fontWeight: FontWeight.bold,
-              color: Colors.white
+              color: Colors.white,
             ),
             ),
             const SizedBox(height: 10,),
@@ -29,6 +32,7 @@ class BannerToExplore extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(horizontal: 33),
                 backgroundColor: Colors.white,
+                elevation: 0,
               ),
               onPressed: () {}, 
             child: const Text(
@@ -41,8 +45,16 @@ class BannerToExplore extends StatelessWidget {
             ),)
         ),
         ], 
-        ))
-      ],),
+        )
+        ),
+        Positioned(
+          top: 0,
+          right: -20,
+          bottom: 0,
+          child: Image.network("https://pngimg.com/d/chef_PNG190.png",
+          ))
+      ],
+      ),
     );
   }
 }
