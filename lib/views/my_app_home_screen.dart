@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cook_ease/utilities/constants.dart';
 import 'package:cook_ease/widget/banner.dart';
 import 'package:cook_ease/widget/my_icon_button.dart';
@@ -12,7 +13,8 @@ class MyAppHomeScreen extends StatefulWidget {
 }
 
 class _MyAppHomeScreenState extends State<MyAppHomeScreen> {
-  get border => null;
+    final CollectionReference  categoriesItems = FirebaseFirestore.instance.collection("App-Category");
+    String category = "All";
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +28,43 @@ class _MyAppHomeScreenState extends State<MyAppHomeScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     headerParts(),
                     mySearchBar(),
                     // fot the banner
                     const BannerToExplore(),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: 20,),
+                        child: Text(
+                          "categories",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                        ) ,
+                        ),
+                        ),
+                        // for the categories
+                        StreamBuilder(
+                          stream: categoriesItems.snapshots(),
+                         builder: (context,
+                          AsyncSnapshot<QueryDocumentSnapshot> streamsnapshot)
+                         {
+                          if(streamsnapshot.hasData){
+                            return SingleChildScrollView();
+                          }
+                          return Center(
+                            child: Column(
+                              children:  [
+                                CircularProgressIndicator(),
+                             
+                              ],
+                            ),
+                          )
+                         }
+                         )
+                        
                   ],
                 
                 )
