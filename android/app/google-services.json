@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "7127101151",
+    "project_id": "cookease-flutter",
+    "storage_bucket": "cookease-flutter.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:7127101151:android:2bb856cc778c944fee036a",
+        "android_client_info": {
+          "package_name": "com.example.cookease"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFgZpQt4mnelvpE6imS1VeMe6t1fYXPbo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
