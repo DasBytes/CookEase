@@ -27,7 +27,7 @@ class BannerToExplore extends StatelessWidget {
             const SizedBox(height: 10,),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(horizontal: 33),
+                padding: const EdgeInsets.symmetric(horizontal: 33),
                 backgroundColor: Colors.white,
               ),
               onPressed: () {}, 
