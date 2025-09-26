@@ -1,6 +1,7 @@
+import 'package:cook_ease/views/my_app_home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:cook_ease/views/app_main_screen.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
    
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AppMainScreen(),
+      home: MyAppHomeScreen(),
 
     );
   }
