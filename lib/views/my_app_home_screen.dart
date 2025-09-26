@@ -1,4 +1,5 @@
 import 'package:cook_ease/utilities/constants.dart';
+import 'package:cook_ease/widget/banner.dart';
 import 'package:cook_ease/widget/my_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
@@ -28,6 +29,8 @@ class _MyAppHomeScreenState extends State<MyAppHomeScreen> {
                   children: [
                     headerParts(),
                     mySearchBar(),
+                    // fot the banner
+                    const BannerToExplore(),
                   ],
                 
                 )
